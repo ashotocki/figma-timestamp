@@ -105,9 +105,6 @@
         line.x = viewportPosition.x - line.width / 15;
         line.y = viewportPosition.y - line.height / 15;
 
-        // Select the newly created frame
-        figma.currentPage.selection = [newFrame];
-
         // Center the viewport on the new frame
         figma.viewport.scrollAndZoomIntoView([newFrame]);
 
@@ -115,6 +112,9 @@
         // Group all the things!! 
         const group = figma.group([newFrame, line], figma.currentPage);
         group.name = 'Timestamp'; // Set the name of the group
+
+        // Select the newly created group
+        figma.currentPage.selection = [group];
 
         
       })().then(() => {
