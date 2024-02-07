@@ -1,0 +1,19 @@
+<body>
+
+<button id="create">Create Ash</button>
+<button id="cancel">Cancel</button>
+
+
+<script>
+
+document.getElementById('create').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'create-ash' } }, '*')
+}
+
+document.getElementById('cancel').onclick = () => {
+  parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+}
+
+</script>
+
+</body>
