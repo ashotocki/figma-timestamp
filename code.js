@@ -69,14 +69,13 @@ newFrame.maxWidth = 200;
     // Create a NEW LINE
     const line = figma.createLine();
     line.name = 'Timestamp Line';
-    // Set the starting and ending points of the line
-    line.x = -158; // Starting X coordinate
-    line.y = 61; // Starting Y coordinate
     line.strokeWeight = 1; // Adjust the stroke weight as needed
     line.strokes = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 } }]; // Set line color
     // Add an arrowhead to the end of the line
     line.strokeCap = 'ARROW_EQUILATERAL'; // Set line cap to arrow
     line.strokeAlign = 'OUTSIDE'; // Align the arrow outside the line
+    // Append that line to that frame
+    //newFrame.appendChild(line);
     // Append the new frame to the current page
     figma.currentPage.appendChild(newFrame);
     // Get the current viewport position
@@ -84,6 +83,9 @@ newFrame.maxWidth = 200;
     // Set the position of the frame near the cursor
     newFrame.x = viewportPosition.x - newFrame.width / 2;
     newFrame.y = viewportPosition.y - newFrame.height / 2;
+    // Set the position of the line near the cursor
+    line.x = viewportPosition.x - line.width / 2;
+    line.y = viewportPosition.y - line.height / 2;
     // Select the newly created frame
     figma.currentPage.selection = [newFrame];
     // Center the viewport on the new frame
