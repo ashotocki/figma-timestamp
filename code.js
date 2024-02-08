@@ -25,7 +25,7 @@ const options = {
     hour: '2-digit',
     minute: '2-digit',
     second: '2-digit',
-    hour12: false,
+    hour12: true,
     timeZone: 'EST' // Change this to your desired time zone
 };
 const formattedDateTime = currentDate.toLocaleString('en-US', options);
@@ -51,21 +51,35 @@ newFrame.verticalPadding = 10; // Padding
 newFrame.maxWidth = 200;
 //Create Timestamp
 (() => __awaiter(void 0, void 0, void 0, function* () {
-    const text = figma.createText();
-    const note = figma.createText();
     // Load the font in the text node before setting the characters
     yield figma.loadFontAsync({ family: "Inter", style: "Regular" });
-    text.characters = `${user} ${formattedDateTime}`;
-    note.characters = `Put your note here`;
-    // Set font sizes and colors
-    text.fontSize = 10;
-    text.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }];
-    note.resize(180, 50);
-    note.textAutoResize = 'HEIGHT';
-    note.fontSize = 12;
+    // Start Label
+    const labelStart = figma.createText();
+    labelStart.characters = `Started`;
+    labelStart.resize(180, 50);
+    labelStart.textAutoResize = 'HEIGHT';
+    labelStart.fontSize = 12;
+    // Started Timestamp
+    const metaStart = figma.createText();
+    metaStart.characters = `${user} ${formattedDateTime}`;
+    metaStart.fontSize = 10;
+    metaStart.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }];
+    // Updated Label
+    const labelUpdate = figma.createText();
+    labelUpdate.characters = `Last Updated`;
+    labelUpdate.resize(180, 50);
+    labelUpdate.textAutoResize = 'HEIGHT';
+    labelUpdate.fontSize = 12;
+    // Started Timestamp
+    const metaUpdate = figma.createText();
+    metaUpdate.characters = `${user} ${formattedDateTime}`;
+    metaUpdate.fontSize = 10;
+    metaUpdate.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }];
     // Append the text node to the frame
-    newFrame.appendChild(text);
-    newFrame.appendChild(note);
+    newFrame.appendChild(labelStart);
+    newFrame.appendChild(metaStart);
+    newFrame.appendChild(labelUpdate);
+    newFrame.appendChild(metaUpdate);
     // Create a NEW LINE
     const line = figma.createLine();
     line.name = 'Timestamp Line';

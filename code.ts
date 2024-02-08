@@ -52,24 +52,48 @@
         
       //Create Timestamp
       (async () => {
-        const text = figma.createText()
-        const note = figma.createText()
+        
+        
+        
+        
+        
+        
 
         // Load the font in the text node before setting the characters
         await figma.loadFontAsync({ family: "Inter", style: "Regular" })
-        text.characters = `${user} ${formattedDateTime}`
-        note.characters = `Put your note here`
+        
+        // Start Label
+        const labelStart = figma.createText()
+        labelStart.characters = `Started`
+        labelStart.resize(180, 50)
+        labelStart.textAutoResize = 'HEIGHT'
+        labelStart.fontSize = 12
 
-        // Set font sizes and colors
-        text.fontSize = 10
-        text.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }]
-        note.resize(180, 50)
-        note.textAutoResize = 'HEIGHT'
-        note.fontSize = 12
+        // Started Timestamp
+        const metaStart = figma.createText()
+        metaStart.characters = `${user} ${formattedDateTime}`
+        metaStart.fontSize = 10
+        metaStart.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }]
+        
+      
+        // Updated Label
+        const labelUpdate = figma.createText()
+        labelUpdate.characters = `Last Updated`
+        labelUpdate.resize(180, 50)
+        labelUpdate.textAutoResize = 'HEIGHT'
+        labelUpdate.fontSize = 12
+
+        // Started Timestamp
+        const metaUpdate = figma.createText()
+        metaUpdate.characters = `${user} ${formattedDateTime}`
+        metaUpdate.fontSize = 10
+        metaUpdate.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }]
 
         // Append the text node to the frame
-        newFrame.appendChild(text);
-        newFrame.appendChild(note);
+        newFrame.appendChild(labelStart);
+        newFrame.appendChild(metaStart);
+        newFrame.appendChild(labelUpdate);
+        newFrame.appendChild(metaUpdate);
 
         
         // Create a NEW LINE
