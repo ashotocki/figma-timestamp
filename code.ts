@@ -126,11 +126,8 @@
         newFrame.y = viewportPosition.y - newFrame.height / 2;
 
         // Set the position of the line near the cursor
-        line.x = viewportPosition.x - line.width / 15;
-        line.y = viewportPosition.y - line.height / 15;
-
-        // Center the viewport on the new frame
-        figma.viewport.scrollAndZoomIntoView([newFrame]);
+        line.x = viewportPosition.x - line.width / 155;
+        line.y = viewportPosition.y - line.height / -40;
 
 
         // Group all the things!! 
@@ -140,13 +137,15 @@
         // Select the newly created group
         figma.currentPage.selection = [group];
 
+        // Center the viewport on the new group
+        figma.viewport.scrollAndZoomIntoView([group]);
+
         
       })().then(() => {
         
       // Font has loaded, you can now safely close the plugin
-        figma.closePlugin();/*
-        }).catch((error: any) => {
-        console.error("Error loading font:", error);*/
+
+        figma.closePlugin();
         }
         )
 
