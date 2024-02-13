@@ -11,8 +11,10 @@ const newFrame = figma.createFrame();
 
 // Text Nodes
 const labelStart = figma.createText();
+const userStart = figma.createText();
 const metaStart = figma.createText();
 const labelUpdate = figma.createText();
+const userUpdate = figma.createText();
 const metaUpdate = figma.createText();
 
 // Line Notes
@@ -91,9 +93,10 @@ function createNewTimestamp() {
 
     // Append the text node to the frame
     newFrame.appendChild(labelStart);
+    newFrame.appendChild(userStart);
     newFrame.appendChild(metaStart);
-    newFrame.appendChild(labelUpdate);
-    newFrame.appendChild(metaUpdate);
+    //newFrame.appendChild(labelUpdate);  Hidden for now
+    //newFrame.appendChild(metaUpdate);   Hidden for now
 
     // Create Frame Content
     (async () => {
@@ -102,22 +105,33 @@ function createNewTimestamp() {
         
         // Start Label
         labelStart.name = 'Started'
-        labelStart.characters = `Started`
+        labelStart.characters = `Timestamp`
         labelStart.resize(180, 50)
         labelStart.textAutoResize = 'HEIGHT'
         labelStart.layoutSizingHorizontal = 'FILL'
         labelStart.fontSize = 12
 
+        // Started Username
+        userStart.name = 'Username'
+        userStart.characters = `${user}`
+        userStart.fontSize = 10
+        userStart.resize(180, 50)
+        userStart.textAutoResize = 'HEIGHT'
+        userStart.layoutSizingHorizontal = 'FILL'
+        userStart.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }]
+
         // Started Timestamp
         metaStart.name = 'Started At Time'
-        metaStart.characters = `${user} ${formattedDateTime}`
+        metaStart.characters = `${formattedDateTime}`
         metaStart.fontSize = 10
         metaStart.resize(180, 50)
         metaStart.textAutoResize = 'HEIGHT'
         metaStart.layoutSizingHorizontal = 'FILL'
         metaStart.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }]
         
-        // Updated Label
+        /* 
+        
+        //Updated Label
         labelUpdate.name = 'Last Updated'
         labelUpdate.characters = `Last Updated`
         labelUpdate.resize(180, 50)
@@ -132,7 +146,9 @@ function createNewTimestamp() {
         metaUpdate.resize(180, 50)
         metaUpdate.textAutoResize = 'HEIGHT'
         metaUpdate.layoutSizingHorizontal = 'FILL'
-        metaUpdate.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }]
+        metaUpdate.fills = [{ type: 'SOLID', color: { r: 0, g: 0, b: 0 }, opacity: .50, }] 
+        
+        */
 
         // Create a NEW LINE
         line.name = 'Timestamp Line'
